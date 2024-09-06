@@ -1,0 +1,44 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.video {
+    position: relative; //para la posicion del padre y que sepan los hijos donde esta
+    min-height: 50rem;
+    max-height: 70rem; // ambas nos ayudan a cortar el overlay 
+    overflow: hidden; //oculta lo que el overlay no tiene 
+    .overlay {
+        position: absolute; // para posicionar encima del video y poder cambiar sus cordenadas
+        background: linear-gradient(
+            270deg,
+            rgba(v.$morado, 60%), /*el rgba es para habilitar la transpercia de ese color*/
+            rgba( darken( v.$morado, 20%), 90% ) /*darken es una funcion para darle mas color al degradado o oscurecer el color*/
+        );
+        inset: 0;
+        display: flex;
+        align-items: center;
+    }
+    video {
+        display: block;
+        width: auto;
+        @include m.desktop {
+            width: 100%;
+        }
+    }
+}
+.contenido-video {
+    z-index: 10; //puedes controlar lo que se muestra un elemento detras de otro
+    h2 {
+        color: v.$blanco;
+        font-size: 7rem;
+        margin: 0;
+    }
+    p {
+        background-color: v.$rosa;
+        display: inline-block; //para que obtenga todo lo de solo el parrafo y no todo en la pantall
+        padding: 1rem 2rem;
+        color: v.$blanco;
+        font-size: 2.4rem; //hacer mas ancha la letra
+        font-weight: 700;
+        margin: 0;
+    }
+}
